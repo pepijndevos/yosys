@@ -429,10 +429,11 @@ endmodule
 
 module SRL16E (
   output Q,
+  input A0, A1, A2, A3, CE,
   (* clkbuf_sink *)
   (* invertible_pin = "IS_CLK_INVERTED" *)
   input CLK,
-  input A0, A1, A2, A3, CE, D
+  input D
 );
   parameter [15:0] INIT = 16'h0000;
   parameter [0:0] IS_CLK_INVERTED = 1'b0;
@@ -451,10 +452,11 @@ endmodule
 module SRLC16E (
   output Q,
   output Q15,
-  input A0, A1, A2, A3, CE, D,
+  input A0, A1, A2, A3, CE,
   (* clkbuf_sink *)
   (* invertible_pin = "IS_CLK_INVERTED" *)
   input CLK,
+  input D
 );
   parameter [15:0] INIT = 16'h0000;
   parameter [0:0] IS_CLK_INVERTED = 1'b0;
@@ -475,10 +477,11 @@ module SRLC32E (
   output Q,
   output Q31,
   input [4:0] A,
+  input CE,
   (* clkbuf_sink *)
   (* invertible_pin = "IS_CLK_INVERTED" *)
   input CLK,
-  input CE, D
+  input D
 );
   parameter [31:0] INIT = 32'h00000000;
   parameter [0:0] IS_CLK_INVERTED = 1'b0;

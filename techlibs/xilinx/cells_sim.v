@@ -60,9 +60,18 @@ module BUFGCTRL(
     (* clkbuf_driver *)
     output O,
     input I0, input I1,
-    input S0, input S1,
-    input CE0, input CE1,
-    input IGNORE0, input IGNORE1);
+    (* invertible_pin = "IS_S0_INVERTED" *)
+    input S0,
+    (* invertible_pin = "IS_S1_INVERTED" *)
+    input S1,
+    (* invertible_pin = "IS_CE0_INVERTED" *)
+    input CE0,
+    (* invertible_pin = "IS_CE1_INVERTED" *)
+    input CE1,
+    (* invertible_pin = "IS_IGNORE0_INVERTED" *)
+    input IGNORE0,
+    (* invertible_pin = "IS_IGNORE1_INVERTED" *)
+    input IGNORE1);
 
 parameter [0:0] INIT_OUT = 1'b0;
 parameter PRESELECT_I0 = "FALSE";
@@ -87,6 +96,7 @@ module BUFHCE(
     (* clkbuf_driver *)
     output O,
     input I,
+    (* invertible_pin = "IS_CE_INVERTED" *)
     input CE);
 
 parameter [0:0] INIT_OUT = 1'b0;
@@ -236,7 +246,16 @@ endmodule
 
 `endif
 
-module FDRE (output reg Q, (* clkbuf_sink *) input C, input CE, D, R);
+module FDRE (
+    output reg Q,
+    (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
+    input C,
+    input CE,
+    (* invertible_pin = "IS_D_INVERTED" *)
+    input D,
+    (* invertible_pin = "IS_R_INVERTED" *)
+    input R);
   parameter [0:0] INIT = 1'b0;
   parameter [0:0] IS_C_INVERTED = 1'b0;
   parameter [0:0] IS_D_INVERTED = 1'b0;
@@ -248,7 +267,16 @@ module FDRE (output reg Q, (* clkbuf_sink *) input C, input CE, D, R);
   endcase endgenerate
 endmodule
 
-module FDSE (output reg Q, (* clkbuf_sink *) input C, input CE, D, S);
+module FDSE (
+    output reg Q,
+    (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
+    input C,
+    input CE,
+    (* invertible_pin = "IS_D_INVERTED" *)
+    input D,
+    (* invertible_pin = "IS_S_INVERTED" *)
+    input S);
   parameter [0:0] INIT = 1'b1;
   parameter [0:0] IS_C_INVERTED = 1'b0;
   parameter [0:0] IS_D_INVERTED = 1'b0;
@@ -260,7 +288,16 @@ module FDSE (output reg Q, (* clkbuf_sink *) input C, input CE, D, S);
   endcase endgenerate
 endmodule
 
-module FDCE (output reg Q, (* clkbuf_sink *) input C, input CE, D, CLR);
+module FDCE (
+    output reg Q,
+    (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
+    input C,
+    input CE,
+    (* invertible_pin = "IS_D_INVERTED" *)
+    input D,
+    (* invertible_pin = "IS_CLR_INVERTED" *)
+    input CLR);
   parameter [0:0] INIT = 1'b0;
   parameter [0:0] IS_C_INVERTED = 1'b0;
   parameter [0:0] IS_D_INVERTED = 1'b0;
@@ -274,7 +311,16 @@ module FDCE (output reg Q, (* clkbuf_sink *) input C, input CE, D, CLR);
   endcase endgenerate
 endmodule
 
-module FDPE (output reg Q, (* clkbuf_sink *) input C, input CE, D, PRE);
+module FDPE (
+    output reg Q,
+    (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
+    input C,
+    input CE,
+    (* invertible_pin = "IS_D_INVERTED" *)
+    input D,
+    (* invertible_pin = "IS_PRE_INVERTED" *)
+    input PRE);
   parameter [0:0] INIT = 1'b1;
   parameter [0:0] IS_C_INVERTED = 1'b0;
   parameter [0:0] IS_D_INVERTED = 1'b0;
@@ -318,6 +364,7 @@ module RAM32X1D (
   (* abc_scc_break *)
   input  D,
   (* clkbuf_sink *)
+  (* invertible_pin = "IS_WCLK_INVERTED" *)
   input  WCLK,
   (* abc_scc_break *)
   input  WE,
@@ -341,6 +388,7 @@ module RAM64X1D (
   (* abc_scc_break *)
   input  D,
   (* clkbuf_sink *)
+  (* invertible_pin = "IS_WCLK_INVERTED" *)
   input  WCLK,
   (* abc_scc_break *)
   input  WE,
@@ -364,6 +412,7 @@ module RAM128X1D (
   (* abc_scc_break *)
   input        D,
   (* clkbuf_sink *)
+  (* invertible_pin = "IS_WCLK_INVERTED" *)
   input        WCLK,
   (* abc_scc_break *)
   input        WE,
@@ -381,6 +430,7 @@ endmodule
 module SRL16E (
   output Q,
   (* clkbuf_sink *)
+  (* invertible_pin = "IS_CLK_INVERTED" *)
   input CLK,
   input A0, A1, A2, A3, CE, D
 );
@@ -401,7 +451,10 @@ endmodule
 module SRLC16E (
   output Q,
   output Q15,
-  input A0, A1, A2, A3, CE, CLK, D
+  input A0, A1, A2, A3, CE, D,
+  (* clkbuf_sink *)
+  (* invertible_pin = "IS_CLK_INVERTED" *)
+  input CLK,
 );
   parameter [15:0] INIT = 16'h0000;
   parameter [0:0] IS_CLK_INVERTED = 1'b0;
@@ -423,6 +476,7 @@ module SRLC32E (
   output Q31,
   input [4:0] A,
   (* clkbuf_sink *)
+  (* invertible_pin = "IS_CLK_INVERTED" *)
   input CLK,
   input CE, D
 );

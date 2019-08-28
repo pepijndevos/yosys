@@ -23,7 +23,9 @@ module BUFGCE (...);
     parameter [0:0] IS_I_INVERTED = 1'b0;
     (* clkbuf_driver *)
     output O;
+    (* invertible_pin = "IS_CE_INVERTED" *)
     input CE;
+    (* invertible_pin = "IS_I_INVERTED" *)
     input I;
 endmodule
 
@@ -84,18 +86,19 @@ module BUFMRCE (...);
     parameter [0:0] IS_CE_INVERTED = 1'b0;
     (* clkbuf_driver *)
     output O;
+    (* invertible_pin = "IS_CE_INVERTED" *)
     input CE;
     input I;
 endmodule
 
 module BUFR (...);
+    parameter BUFR_DIVIDE = "BYPASS";
+    parameter SIM_DEVICE = "7SERIES";
     (* clkbuf_driver *)
     output O;
     input CE;
     input CLR;
     input I;
-    parameter BUFR_DIVIDE = "BYPASS";
-    parameter SIM_DEVICE = "7SERIES";
 endmodule
 
 (* keep *)
@@ -119,6 +122,7 @@ module CFGLUT5 (...);
     input CDI;
     input CE;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLK_INVERTED" *)
     input CLK;
 endmodule
 
@@ -181,11 +185,13 @@ module DSP48E1 (...);
     output UNDERFLOW;
     input [29:0] A;
     input [29:0] ACIN;
+    (* invertible_pin = "IS_ALUMODE_INVERTED" *)
     input [3:0] ALUMODE;
     input [17:0] B;
     input [17:0] BCIN;
     input [47:0] C;
     input CARRYCASCIN;
+    (* invertible_pin = "IS_CARRYIN_INVERTED" *)
     input CARRYIN;
     input [2:0] CARRYINSEL;
     input CEA1;
@@ -202,10 +208,13 @@ module DSP48E1 (...);
     input CEM;
     input CEP;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLK_INVERTED" *)
     input CLK;
     input [24:0] D;
+    (* invertible_pin = "IS_INMODE_INVERTED" *)
     input [4:0] INMODE;
     input MULTSIGNIN;
+    (* invertible_pin = "IS_OPMODE_INVERTED" *)
     input [6:0] OPMODE;
     input [47:0] PCIN;
     input RSTA;
@@ -255,13 +264,19 @@ module FIFO18E1 (...);
     input [31:0] DI;
     input [3:0] DIP;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_RDCLK_INVERTED" *)
     input RDCLK;
+    (* invertible_pin = "IS_RDEN_INVERTED" *)
     input RDEN;
     input REGCE;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
+    (* invertible_pin = "IS_RSTREG_INVERTED" *)
     input RSTREG;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WRCLK_INVERTED" *)
     input WRCLK;
+    (* invertible_pin = "IS_WREN_INVERTED" *)
     input WREN;
 endmodule
 
@@ -302,13 +317,19 @@ module FIFO36E1 (...);
     input INJECTDBITERR;
     input INJECTSBITERR;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_RDCLK_INVERTED" *)
     input RDCLK;
+    (* invertible_pin = "IS_RDEN_INVERTED" *)
     input RDEN;
     input REGCE;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
+    (* invertible_pin = "IS_RSTREG_INVERTED" *)
     input RSTREG;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WRCLK_INVERTED" *)
     input WRCLK;
+    (* invertible_pin = "IS_WREN_INVERTED" *)
     input WREN;
 endmodule
 
@@ -672,20 +693,26 @@ module GTHE2_CHANNEL (...);
     output [7:0] RXDISPERR;
     output [7:0] RXNOTINTABLE;
     input CFGRESET;
+    (* invertible_pin = "IS_CLKRSVD0_INVERTED" *)
     input CLKRSVD0;
+    (* invertible_pin = "IS_CLKRSVD1_INVERTED" *)
     input CLKRSVD1;
+    (* invertible_pin = "IS_CPLLLOCKDETCLK_INVERTED" *)
     input CPLLLOCKDETCLK;
     input CPLLLOCKEN;
     input CPLLPD;
     input CPLLRESET;
     input DMONFIFORESET;
+    (* invertible_pin = "IS_DMONITORCLK_INVERTED" *)
     input DMONITORCLK;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
     input EYESCANMODE;
     input EYESCANRESET;
     input EYESCANTRIGGER;
+    (* invertible_pin = "IS_GTGREFCLK_INVERTED" *)
     input GTGREFCLK;
     input GTHRXN;
     input GTHRXP;
@@ -781,9 +808,12 @@ module GTHE2_CHANNEL (...);
     input RXSYNCIN;
     input RXSYNCMODE;
     input RXUSERRDY;
+    (* invertible_pin = "IS_RXUSRCLK2_INVERTED" *)
     input RXUSRCLK2;
+    (* invertible_pin = "IS_RXUSRCLK_INVERTED" *)
     input RXUSRCLK;
     input SETERRSTATUS;
+    (* invertible_pin = "IS_SIGVALIDCLK_INVERTED" *)
     input SIGVALIDCLK;
     input TX8B10BEN;
     input TXCOMINIT;
@@ -806,6 +836,7 @@ module GTHE2_CHANNEL (...);
     input TXPHALIGNEN;
     input TXPHDLYPD;
     input TXPHDLYRESET;
+    (* invertible_pin = "IS_TXPHDLYTSTCLK_INVERTED" *)
     input TXPHDLYTSTCLK;
     input TXPHINIT;
     input TXPHOVRDEN;
@@ -829,7 +860,9 @@ module GTHE2_CHANNEL (...);
     input TXSYNCIN;
     input TXSYNCMODE;
     input TXUSERRDY;
+    (* invertible_pin = "IS_TXUSRCLK2_INVERTED" *)
     input TXUSRCLK2;
+    (* invertible_pin = "IS_TXUSRCLK_INVERTED" *)
     input TXUSRCLK;
     input [13:0] RXADAPTSELTEST;
     input [15:0] DRPDI;
@@ -918,9 +951,11 @@ module GTHE2_COMMON (...);
     input BGMONITORENB;
     input BGPDB;
     input BGRCALOVRDENB;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
+    (* invertible_pin = "IS_GTGREFCLK_INVERTED" *)
     input GTGREFCLK;
     input GTNORTHREFCLK0;
     input GTNORTHREFCLK1;
@@ -928,6 +963,7 @@ module GTHE2_COMMON (...);
     input GTREFCLK1;
     input GTSOUTHREFCLK0;
     input GTSOUTHREFCLK1;
+    (* invertible_pin = "IS_QPLLLOCKDETCLK_INVERTED" *)
     input QPLLLOCKDETCLK;
     input QPLLLOCKEN;
     input QPLLOUTRESET;
@@ -1253,10 +1289,14 @@ module GTPE2_CHANNEL (...);
     output [4:0] RXPHMONITOR;
     output [4:0] RXPHSLIPMONITOR;
     input CFGRESET;
+    (* invertible_pin = "IS_CLKRSVD0_INVERTED" *)
     input CLKRSVD0;
+    (* invertible_pin = "IS_CLKRSVD1_INVERTED" *)
     input CLKRSVD1;
     input DMONFIFORESET;
+    (* invertible_pin = "IS_DMONITORCLK_INVERTED" *)
     input DMONITORCLK;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
@@ -1330,9 +1370,12 @@ module GTPE2_CHANNEL (...);
     input RXSYNCIN;
     input RXSYNCMODE;
     input RXUSERRDY;
+    (* invertible_pin = "IS_RXUSRCLK2_INVERTED" *)
     input RXUSRCLK2;
+    (* invertible_pin = "IS_RXUSRCLK_INVERTED" *)
     input RXUSRCLK;
     input SETERRSTATUS;
+    (* invertible_pin = "IS_SIGVALIDCLK_INVERTED" *)
     input SIGVALIDCLK;
     input TX8B10BEN;
     input TXCOMINIT;
@@ -1355,6 +1398,7 @@ module GTPE2_CHANNEL (...);
     input TXPHALIGNEN;
     input TXPHDLYPD;
     input TXPHDLYRESET;
+    (* invertible_pin = "IS_TXPHDLYTSTCLK_INVERTED" *)
     input TXPHDLYTSTCLK;
     input TXPHINIT;
     input TXPHOVRDEN;
@@ -1375,7 +1419,9 @@ module GTPE2_CHANNEL (...);
     input TXSYNCIN;
     input TXSYNCMODE;
     input TXUSERRDY;
+    (* invertible_pin = "IS_TXUSRCLK2_INVERTED" *)
     input TXUSRCLK2;
+    (* invertible_pin = "IS_TXUSRCLK_INVERTED" *)
     input TXUSRCLK;
     input [13:0] RXADAPTSELTEST;
     input [15:0] DRPDI;
@@ -1464,21 +1510,26 @@ module GTPE2_COMMON (...);
     input BGMONITORENB;
     input BGPDB;
     input BGRCALOVRDENB;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
     input GTEASTREFCLK0;
     input GTEASTREFCLK1;
+    (* invertible_pin = "IS_GTGREFCLK0_INVERTED" *)
     input GTGREFCLK0;
+    (* invertible_pin = "IS_GTGREFCLK1_INVERTED" *)
     input GTGREFCLK1;
     input GTREFCLK0;
     input GTREFCLK1;
     input GTWESTREFCLK0;
     input GTWESTREFCLK1;
+    (* invertible_pin = "IS_PLL0LOCKDETCLK_INVERTED" *)
     input PLL0LOCKDETCLK;
     input PLL0LOCKEN;
     input PLL0PD;
     input PLL0RESET;
+    (* invertible_pin = "IS_PLL1LOCKDETCLK_INVERTED" *)
     input PLL1LOCKDETCLK;
     input PLL1LOCKEN;
     input PLL1PD;
@@ -1767,16 +1818,19 @@ module GTXE2_CHANNEL (...);
     output [7:0] RXNOTINTABLE;
     output [9:0] TSTOUT;
     input CFGRESET;
+    (* invertible_pin = "IS_CPLLLOCKDETCLK_INVERTED" *)
     input CPLLLOCKDETCLK;
     input CPLLLOCKEN;
     input CPLLPD;
     input CPLLRESET;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
     input EYESCANMODE;
     input EYESCANRESET;
     input EYESCANTRIGGER;
+    (* invertible_pin = "IS_GTGREFCLK_INVERTED" *)
     input GTGREFCLK;
     input GTNORTHREFCLK0;
     input GTNORTHREFCLK1;
@@ -1853,7 +1907,9 @@ module GTXE2_CHANNEL (...);
     input RXQPIEN;
     input RXSLIDE;
     input RXUSERRDY;
+    (* invertible_pin = "IS_RXUSRCLK2_INVERTED" *)
     input RXUSRCLK2;
+    (* invertible_pin = "IS_RXUSRCLK_INVERTED" *)
     input RXUSRCLK;
     input SETERRSTATUS;
     input TX8B10BEN;
@@ -1877,6 +1933,7 @@ module GTXE2_CHANNEL (...);
     input TXPHALIGNEN;
     input TXPHDLYPD;
     input TXPHDLYRESET;
+    (* invertible_pin = "IS_TXPHDLYTSTCLK_INVERTED" *)
     input TXPHDLYTSTCLK;
     input TXPHINIT;
     input TXPHOVRDEN;
@@ -1892,7 +1949,9 @@ module GTXE2_CHANNEL (...);
     input TXSTARTSEQ;
     input TXSWING;
     input TXUSERRDY;
+    (* invertible_pin = "IS_TXUSRCLK2_INVERTED" *)
     input TXUSRCLK2;
+    (* invertible_pin = "IS_TXUSRCLK_INVERTED" *)
     input TXUSRCLK;
     input [15:0] DRPDI;
     input [15:0] GTRSVD;
@@ -1969,9 +2028,11 @@ module GTXE2_COMMON (...);
     input BGBYPASSB;
     input BGMONITORENB;
     input BGPDB;
+    (* invertible_pin = "IS_DRPCLK_INVERTED" *)
     input DRPCLK;
     input DRPEN;
     input DRPWE;
+    (* invertible_pin = "IS_GTGREFCLK_INVERTED" *)
     input GTGREFCLK;
     input GTNORTHREFCLK0;
     input GTNORTHREFCLK1;
@@ -1979,6 +2040,7 @@ module GTXE2_COMMON (...);
     input GTREFCLK1;
     input GTSOUTHREFCLK0;
     input GTSOUTHREFCLK1;
+    (* invertible_pin = "IS_QPLLLOCKDETCLK_INVERTED" *)
     input QPLLLOCKDETCLK;
     input QPLLLOCKEN;
     input QPLLOUTRESET;
@@ -2182,8 +2244,10 @@ module IDDR (...);
     output Q1;
     output Q2;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
     input C;
     input CE;
+    (* invertible_pin = "IS_D_INVERTED" *)
     input D;
     input R;
     input S;
@@ -2200,10 +2264,13 @@ module IDDR_2CLK (...);
     output Q1;
     output Q2;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
     input C;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CB_INVERTED" *)
     input CB;
     input CE;
+    (* invertible_pin = "IS_D_INVERTED" *)
     input D;
     input R;
     input S;
@@ -2234,11 +2301,14 @@ module IDELAYE2 (...);
     output [4:0] CNTVALUEOUT;
     output DATAOUT;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
     input C;
     input CE;
     input CINVCTRL;
     input [4:0] CNTVALUEIN;
+    (* invertible_pin = "IS_DATAIN_INVERTED" *)
     input DATAIN;
+    (* invertible_pin = "IS_IDATAIN_INVERTED" *)
     input IDATAIN;
     input INC;
     input LD;
@@ -2457,20 +2527,27 @@ module ISERDESE2 (...);
     input CE1;
     input CE2;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLK_INVERTED" *)
     input CLK;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLKB_INVERTED" *)
     input CLKB;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLKDIV_INVERTED" *)
     input CLKDIV;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLKDIVP_INVERTED" *)
     input CLKDIVP;
+    (* invertible_pin = "IS_D_INVERTED" *)
     input D;
     input DDLY;
     input DYNCLKDIVSEL;
     input DYNCLKSEL;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_OCLK_INVERTED" *)
     input OCLK;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_OCLKB_INVERTED" *)
     input OCLKB;
     input OFB;
     input RST;
@@ -2489,8 +2566,10 @@ module LDCE (...);
     parameter MSGON = "TRUE";
     parameter XON = "TRUE";
     output Q;
+    (* invertible_pin = "IS_CLR_INVERTED" *)
     input CLR;
     input D;
+    (* invertible_pin = "IS_G_INVERTED" *)
     input G;
     input GE;
 endmodule
@@ -2503,8 +2582,10 @@ module LDPE (...);
     parameter XON = "TRUE";
     output Q;
     input D;
+    (* invertible_pin = "IS_G_INVERTED" *)
     input G;
     input GE;
+    (* invertible_pin = "IS_PRE_INVERTED" *)
     input PRE;
 endmodule
 
@@ -2586,6 +2667,7 @@ module MMCME2_ADV (...);
     input CLKFBIN;
     input CLKIN1;
     input CLKIN2;
+    (* invertible_pin = "IS_CLKINSEL_INVERTED" *)
     input CLKINSEL;
     input [6:0] DADDR;
     input DCLK;
@@ -2593,9 +2675,13 @@ module MMCME2_ADV (...);
     input [15:0] DI;
     input DWE;
     input PSCLK;
+    (* invertible_pin = "IS_PSEN_INVERTED" *)
     input PSEN;
+    (* invertible_pin = "IS_PSINCDEC_INVERTED" *)
     input PSINCDEC;
+    (* invertible_pin = "IS_PWRDWN_INVERTED" *)
     input PWRDWN;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
 endmodule
 
@@ -2684,14 +2770,6 @@ module OBUFTDS (...);
 endmodule
 
 module ODDR (...);
-    output Q;
-    (* clkbuf_sink *)
-    input C;
-    input CE;
-    input D1;
-    input D2;
-    input R;
-    input S;
     parameter DDR_CLK_EDGE = "OPPOSITE_EDGE";
     parameter INIT = 1'b0;
     parameter [0:0] IS_C_INVERTED = 1'b0;
@@ -2700,6 +2778,17 @@ module ODDR (...);
     parameter SRTYPE = "SYNC";
     parameter MSGON = "TRUE";
     parameter XON = "TRUE";
+    output Q;
+    (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
+    input C;
+    input CE;
+    (* invertible_pin = "IS_D1_INVERTED" *)
+    input D1;
+    (* invertible_pin = "IS_D2_INVERTED" *)
+    input D2;
+    input R;
+    input S;
 endmodule
 
 module ODELAYE2 (...);
@@ -2717,6 +2806,7 @@ module ODELAYE2 (...);
     output [4:0] CNTVALUEOUT;
     output DATAOUT;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_C_INVERTED" *)
     input C;
     input CE;
     input CINVCTRL;
@@ -2725,6 +2815,7 @@ module ODELAYE2 (...);
     input INC;
     input LD;
     input LDPIPEEN;
+    (* invertible_pin = "IS_ODATAIN_INVERTED" *)
     input ODATAIN;
     input REGRST;
 endmodule
@@ -2763,24 +2854,38 @@ module OSERDESE2 (...);
     output TFB;
     output TQ;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLK_INVERTED" *)
     input CLK;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_CLKDIV_INVERTED" *)
     input CLKDIV;
+    (* invertible_pin = "IS_D1_INVERTED" *)
     input D1;
+    (* invertible_pin = "IS_D2_INVERTED" *)
     input D2;
+    (* invertible_pin = "IS_D3_INVERTED" *)
     input D3;
+    (* invertible_pin = "IS_D4_INVERTED" *)
     input D4;
+    (* invertible_pin = "IS_D5_INVERTED" *)
     input D5;
+    (* invertible_pin = "IS_D6_INVERTED" *)
     input D6;
+    (* invertible_pin = "IS_D7_INVERTED" *)
     input D7;
+    (* invertible_pin = "IS_D8_INVERTED" *)
     input D8;
     input OCE;
     input RST;
     input SHIFTIN1;
     input SHIFTIN2;
+    (* invertible_pin = "IS_T1_INVERTED" *)
     input T1;
+    (* invertible_pin = "IS_T2_INVERTED" *)
     input T2;
+    (* invertible_pin = "IS_T3_INVERTED" *)
     input T3;
+    (* invertible_pin = "IS_T4_INVERTED" *)
     input T4;
     input TBYTEIN;
     input TCE;
@@ -2853,6 +2958,7 @@ module PHASER_IN (...);
     input FREQREFCLK;
     input MEMREFCLK;
     input PHASEREFCLK;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
     input SYNCIN;
     input SYSCLK;
@@ -2894,6 +3000,7 @@ module PHASER_IN_PHY (...);
     input FREQREFCLK;
     input MEMREFCLK;
     input PHASEREFCLK;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
     input RSTDQSFIND;
     input SYNCIN;
@@ -2936,6 +3043,7 @@ module PHASER_OUT (...);
     input FREQREFCLK;
     input MEMREFCLK;
     input PHASEREFCLK;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
     input SELFINEOCLKDELAY;
     input SYNCIN;
@@ -2980,6 +3088,7 @@ module PHASER_OUT_PHY (...);
     input FREQREFCLK;
     input MEMREFCLK;
     input PHASEREFCLK;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
     input SELFINEOCLKDELAY;
     input SYNCIN;
@@ -2993,7 +3102,9 @@ module PHASER_REF (...);
     parameter [0:0] IS_PWRDWN_INVERTED = 1'b0;
     output LOCKED;
     input CLKIN;
+    (* invertible_pin = "IS_PWRDWN_INVERTED" *)
     input PWRDWN;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
 endmodule
 
@@ -3108,11 +3219,14 @@ module PLLE2_ADV (...);
     input CLKFBIN;
     input CLKIN1;
     input CLKIN2;
+    (* invertible_pin = "IS_CLKINSEL_INVERTED" *)
     input CLKINSEL;
     input DCLK;
     input DEN;
     input DWE;
+    (* invertible_pin = "IS_PWRDWN_INVERTED" *)
     input PWRDWN;
+    (* invertible_pin = "IS_RST_INVERTED" *)
     input RST;
     input [15:0] DI;
     input [6:0] DADDR;
@@ -3803,6 +3917,7 @@ module RAM128X1S (...);
     input A6;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3814,6 +3929,7 @@ module RAM256X1S (...);
     input [7:0] A;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3837,6 +3953,7 @@ module RAM32M (...);
     input [1:0] DIC;
     input [1:0] DID;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3852,6 +3969,7 @@ module RAM32X1S (...);
     input A4;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3867,6 +3985,7 @@ module RAM32X1S_1 (...);
     input A4;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3885,6 +4004,7 @@ module RAM32X2S (...);
     input D0;
     input D1;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3908,6 +4028,7 @@ module RAM64M (...);
     input DIC;
     input DID;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3924,6 +4045,7 @@ module RAM64X1S (...);
     input A5;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3940,6 +4062,7 @@ module RAM64X1S_1 (...);
     input A5;
     input D;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -3959,6 +4082,7 @@ module RAM64X2S (...);
     input D0;
     input D1;
     (* clkbuf_sink *)
+    (* invertible_pin = "IS_WCLK_INVERTED" *)
     input WCLK;
     input WE;
 endmodule
@@ -4035,30 +4159,6 @@ module USR_ACCESSE2 (...);
 endmodule
 
 module XADC (...);
-    output BUSY;
-    output DRDY;
-    output EOC;
-    output EOS;
-    output JTAGBUSY;
-    output JTAGLOCKED;
-    output JTAGMODIFIED;
-    output OT;
-    output [15:0] DO;
-    output [7:0] ALM;
-    output [4:0] CHANNEL;
-    output [4:0] MUXADDR;
-    input CONVST;
-    input CONVSTCLK;
-    input DCLK;
-    input DEN;
-    input DWE;
-    input RESET;
-    input VN;
-    input VP;
-    input [15:0] DI;
-    input [15:0] VAUXN;
-    input [15:0] VAUXP;
-    input [6:0] DADDR;
     parameter [15:0] INIT_40 = 16'h0;
     parameter [15:0] INIT_41 = 16'h0;
     parameter [15:0] INIT_42 = 16'h0800;
@@ -4095,5 +4195,31 @@ module XADC (...);
     parameter IS_DCLK_INVERTED = 1'b0;
     parameter SIM_DEVICE = "7SERIES";
     parameter SIM_MONITOR_FILE = "design.txt";
+    output BUSY;
+    output DRDY;
+    output EOC;
+    output EOS;
+    output JTAGBUSY;
+    output JTAGLOCKED;
+    output JTAGMODIFIED;
+    output OT;
+    output [15:0] DO;
+    output [7:0] ALM;
+    output [4:0] CHANNEL;
+    output [4:0] MUXADDR;
+    input CONVST;
+    (* invertible_pin = "IS_CONVSTCLK_INVERTED" *)
+    input CONVSTCLK;
+    (* invertible_pin = "IS_DCLK_INVERTED" *)
+    input DCLK;
+    input DEN;
+    input DWE;
+    input RESET;
+    input VN;
+    input VP;
+    input [15:0] DI;
+    input [15:0] VAUXN;
+    input [15:0] VAUXP;
+    input [6:0] DADDR;
 endmodule
 

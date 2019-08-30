@@ -303,9 +303,8 @@ struct SynthXilinxPass : public ScriptPass
 			if (widemux > 0 || help_mode)
 				run("muxpack", "    ('-widemux' only)");
 
-			// shregmap -tech xilinx can cope with $shiftx and $mux
-			//   cells for identifying variable-length shift registers,
-			//   so attempt to convert $pmux-es to the former
+			// xilinx_srl looks for $shiftx cells for identifying variable-length
+			//   shift registers, so attempt to convert $pmux-es to this
 			// Also: wide multiplexer inference benefits from this too
 			if (!(nosrl && widemux == 0) || help_mode) {
 				run("pmux2shiftx", "(skip if '-nosrl' and '-widemux=0')");
@@ -387,13 +386,8 @@ struct SynthXilinxPass : public ScriptPass
 			}
 			run("opt -full");
 
-			if (!nosrl || help_mode) {
-				// shregmap operates on bit-level flops, not word-level,
-				//   so break those down here
-				run("simplemap t:$dff t:$dffe", "       (skip if '-nosrl')");
-				// shregmap with '-tech xilinx' infers variable length shift regs
-				run("shregmap -tech xilinx -minlen 3", "(skip if '-nosrl')");
-			}
+			if (!nosrl || help_mode)
+				run("xilinx_srl -variable -minlen 3", "(skip if '-nosrl')");
 
 			std::string techmap_args = " -map +/techmap.v";
 			if (help_mode)
@@ -421,6 +415,11 @@ struct SynthXilinxPass : public ScriptPass
 			run("clean");
 		}
 
+		if (check_label("map_ffs")) {
+			if (abc9 || help_mode)
+				run(stringf("techmap -map +/xilinx/%s_ff_map.v", family.c_str()));
+		}
+
 		if (check_label("map_luts")) {
 			run("opt_expr -mux_undef");
 			if (flatten_before_abc)
@@ -446,13 +445,14 @@ struct SynthXilinxPass : public ScriptPass
 			// This shregmap call infers fixed length shift registers after abc
 			//   has performed any necessary retiming
 			if (!nosrl || help_mode)
-				run("shregmap -minlen 3 -init -params -enpol any_or_none", "(skip if '-nosrl')");
+				run("xilinx_srl -fixed -minlen 3", "(skip if '-nosrl')");
+
+			std::string techmap_args = "-map +/xilinx/lut_map.v -map +/xilinx/cells_map.v";
 			if (help_mode)
-				run("techmap -map +/xilinx/lut_map.v -map +/xilinx/{family}_ff_map.v -map +/xilinx/cells_map.v");
-			else if (family == "xc6s")
-				run("techmap -map +/xilinx/lut_map.v -map +/xilinx/xc6s_ff_map.v -map +/xilinx/cells_map.v");
-			else
-				run("techmap -map +/xilinx/lut_map.v -map +/xilinx/xc7_ff_map.v -map +/xilinx/cells_map.v");
+				techmap_args += " [-map +/xilinx/{family}_ff_map.v]";
+			else if (!abc9)
+				techmap_args += stringf(" -map +/xilinx/%s_ff_map.v", family.c_str());
+			run("techmap " + techmap_args);
 
 			run("clean");
 		}

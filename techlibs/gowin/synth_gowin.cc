@@ -253,7 +253,7 @@ struct SynthGowinPass : public ScriptPass
 			if (!noiopads || help_mode)
 				run("iopadmap -bits -inpad IBUF O:I -outpad OBUF I:O "
 					"-toutpad TBUF OEN:I:O -tinoutpad IOBUF OEN:O:I:IO", "(unless -noiopads)");
-			run("splitnets");
+			run("splitnets -ports");
 			run("clean");
 			run("autoname");
 		}
